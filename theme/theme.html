@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
+<head>
+    <!-- Assign Theme variables -->
+    <{includeq file="$theme_tpl/theme_vars.html"}>
+    <!-- Title, meta, CSS and javascript -->
+    <{includeq file="$theme_tpl/theme_head.html"}>
+    <style>#header *{margin:0}.navbar-inner{padding-right: 0;padding-left: 0;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;}<{$tmanager_sheet}></style>
+</head>
+<body id="<{$xoops_dirname}>" class="<{$xoops_langcode}>">
+<{$tmanager_preheader}>
+<div id="header">
+  <div class="page-header">
+    <h1>Example page header <small>Subtext for header</small></h1>
+  </div>
+</div>
+<{$tmanager_postheader}>
+<div class="container" id="layout">
+    <div class="row">
+        <{if $xoops_showlblock && $tmanager_spanl gt 0}>
+        <div class="span<{$tmanager_spanl}> xo-block-left">
+            <{foreach item=block from=$xoBlocks.canvas_left}>
+            <{includeq file="$theme_tpl/block_left.html"}>
+            <{/foreach}>
+        </div>
+        <{/if}>
+        <div class="span<{$tmanager_spanc}> xo-block-center">
+            <{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+            <!-- Display center blocks if any -->
+            <div class="row">
+                <div class="span<{$col_span}> xo-top">
+                    <div class="row">
+                        <div class="span<{$col_span}> xo-center">
+                            <!-- Start center-center blocks loop -->
+                            <{foreach item=block from=$xoBlocks.page_topcenter}>
+                            <{includeq file="$theme_tpl/block_center_c.html"}>
+                            <{/foreach}>
+                            <!-- End center-center blocks loop -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span<{$col_span_mid}> xo-left">
+                            <!-- Start center-left blocks loop -->
+                            <{foreach item=block from=$xoBlocks.page_topleft}>
+                            <{includeq file="$theme_tpl/block_center_l.html"}>
+                            <{/foreach}>
+                            <!-- End center-left blocks loop -->
+                        </div>
+                        <{if $col_span_mid == 4}><div class="span1">&nbsp;</div><{/if}>
+                        <div class="span<{$col_span_mid}> xo-right">
+                            <!-- Start center-right blocks loop -->
+                            <{foreach item=block from=$xoBlocks.page_topright}>
+                            <{includeq file="$theme_tpl/block_center_r.html"}>
+                            <{/foreach}>
+                            <!-- End center-right blocks loop -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <{/if}>
+            <{if $xoops_contents && ($xoops_contents != ' ') }>
+            <!-- Start content module page -->
+            <div class="row">
+                <div class="span<{$col_span}>">
+                    <{$xoops_contents}>
+                </div>
+            </div>
+            <!-- End content module -->
+            <{/if}>
+            <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomcenter or $xoBlocks.page_bottomright}>
+            <div class="row">
+                <div class="span<{$col_span}> xo-bottom">
+                    <div class="row">
+                        <div class="span<{$col_span}> xo-center">
+                            <!-- Start center-center blocks loop -->
+                            <{foreach item=block from=$xoBlocks.page_bottomcenter}>
+                            <{includeq file="$theme_tpl/block_center_c.html"}>
+                            <{/foreach}>
+                            <!-- End center-center blocks loop -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span<{$col_span_mid}> xo-left">
+                            <!-- Start center-left blocks loop -->
+                            <{foreach item=block from=$xoBlocks.page_bottomleft}>
+                            <{includeq file="$theme_tpl/block_center_l.html"}>
+                            <{/foreach}>
+                            <!-- End center-left blocks loop -->
+                        </div>
+                        <{if $col_span_mid == 4}><div class="span1">&nbsp;</div><{/if}>
+                        <div class="span<{$col_span_mid}> xo-right">
+                            <!-- Start center-right blocks loop -->
+                            <{foreach item=block from=$xoBlocks.page_bottomright}>
+                            <{includeq file="$theme_tpl/block_center_r.html"}>
+                            <{/foreach}>
+                            <!-- End center-right blocks loop -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <{/if}>
+        </div>
+        <{if $xoops_showrblock && $tmanager_spanr gt 0}>
+        <div class="span<{$tmanager_spanr}> xo-block-right">
+            <{foreach item=block from=$xoBlocks.canvas_right}>
+            <{includeq file="$theme_tpl/block_right.html"}>
+            <{/foreach}>
+        </div>
+        <{/if}>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <div class="span12">
+                    <p class="pull-right"><a href="#"><{translate key='BACK_TO_TOP'}></a></p>
+                    <div class="pagination-centered">
+                        <{$xoops_footer}>
+                    </div>
+                    <!--{xo-logger-output}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
